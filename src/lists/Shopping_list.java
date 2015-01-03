@@ -1,3 +1,5 @@
+package lists;
+
 import java.io.File;
 
 /**
@@ -5,11 +7,12 @@ import java.io.File;
  */
 public class Shopping_list extends Item_list {
 
-    public Shopping_list() {
+    public Shopping_list(File file) {
 
+        generate_list(file);
     }
 
-    public boolean generate_list(File file) {
+    private boolean generate_list(File file) {
 
         return false;
     }
