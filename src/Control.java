@@ -31,6 +31,10 @@ public class Control {
 
     }
 
+    private void work() {
+
+    }
+
     private boolean optimize_list(Shopping_list shopping_list, Store_item_list store_item_list) {
 
         return false;

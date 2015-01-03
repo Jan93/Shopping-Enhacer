@@ -1,6 +1,7 @@
 package lists;
 
 import java.io.*;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -10,6 +11,7 @@ import java.util.Stack;
     protected List<Shop_item> items;
 
     public Item_list() {
+        items = new LinkedList<Shop_item>();
     }
 
     protected Stack<String> read_File(File file) throws IOException{
@@ -46,4 +48,12 @@ import java.util.Stack;
 
         return shop_item;
     }
-}
+
+      public List<Shop_item> getItems() {
+          return items;
+      }
+
+      public void setItems(List<Shop_item> items) {
+          this.items = items;
+      }
+  }
