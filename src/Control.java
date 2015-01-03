@@ -3,6 +3,9 @@ import lists.Store_item_list;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -19,19 +22,35 @@ public class Control {
     public List<Shopping_list> shopping_list_List;
     public List<Store_item_list> store_item_list_List;
 
-    public Control() {
-
-    }
-
     public static void main(String args[]) {
-
+        new Control();
     }
 
-    private void init() {
+    public Control() {
+        Stack<File> file_stack;
 
-    }
+        store_item_list_List = new ArrayList<Store_item_list>();
+        shopping_list_List = new ArrayList<Shopping_list>();
 
-    private void work() {
+        file_stack = open_file_stack(SHOP_LIST_FILE_LOC + '\\' + SHOP_LIST_FILE_NAME);
+        try {
+            for (File stack_file : file_stack) {
+                shopping_list_List.add(new Shopping_list(stack_file));
+            }
+        } catch(IOException e) {
+            write_to_log("IO ERROR");
+            System.exit(1337);
+        }
+
+        file_stack = open_file_stack(STORE_FILE_LOC + '\\' + STORE_FILE_NAME);
+        try {
+            for (File stack_file : file_stack) {
+                store_item_list_List.add(new Store_item_list(stack_file));
+            }
+        } catch(IOException e) {
+            write_to_log("IO ERROR");
+            System.exit(1338);
+        }
 
     }
 
