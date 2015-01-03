@@ -19,23 +19,32 @@ public class Control {
     private static String SHOP_LIST_FILE_LOC = "";
     private static String SHOP_LIST_FILE_NAME = "Shop_List_File_";
 
-    public List<Shopping_list> shopping_list_List;
+    public Shopping_list shopping_list;
     public List<Store_item_list> store_item_list_List;
 
     public static void main(String args[]) {
-        new Control();
+
+        new Control(Integer.parseInt(args[0]));
     }
 
-    public Control() {
+    public Control(int store_num) {
+        boolean success;
+
+        init_lists();
+
+        optimize_list(shopping_list, store_item_list_List.get(store_num));
+
+    }
+
+    private void init_lists() {
         Stack<File> file_stack;
 
         store_item_list_List = new ArrayList<Store_item_list>();
-        shopping_list_List = new ArrayList<Shopping_list>();
 
         file_stack = open_file_stack(SHOP_LIST_FILE_LOC + '\\' + SHOP_LIST_FILE_NAME);
         try {
             for (File stack_file : file_stack) {
-                shopping_list_List.add(new Shopping_list(stack_file));
+                shopping_list = new Shopping_list(stack_file);
             }
         } catch(IOException e) {
             write_to_log("IO ERROR");
@@ -54,9 +63,8 @@ public class Control {
 
     }
 
-    private boolean optimize_list(Shopping_list shopping_list, Store_item_list store_item_list) {
+    private void optimize_list(Shopping_list shopping_list, Store_item_list store_item_list) {
 
-        return false;
     }
 
     private Stack<File> open_file_stack(String file_names) {
@@ -92,20 +100,15 @@ public class Control {
 
         file = new File(file_name);
 
-        try {
-            while (true) {
-                if (file.isFile()) {
-                    return file;
-                } else if (fault_index < 20) {
-                    fault_index++;
-                    wait(100);
+        while (true) {
+            if (file.isFile()) {
+                return file;
+            } else if (fault_index < 20) {
+                fault_index++;
 
-                } else {
-                    throw new FileNotFoundException();
-                }
+            } else {
+                throw new FileNotFoundException();
             }
-        } catch (InterruptedException e) {
-            throw new UnknownError();
         }
 
     }
