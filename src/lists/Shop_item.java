@@ -1,22 +1,18 @@
 package lists;
 
-/**
- * Created by Jan on 31.12.2014.
- */
 public class Shop_item {
     private int index;
     private int price;
     private String name;
 
-    public Shop_item(int index, int price, String name) {
-        this.index = index;
+    public Shop_item(String name, int price) {
         this.price = price;
         this.name = name;
     }
 
-    public Shop_item(int index, String name) {
+
+    public void setIndex(int index) {
         this.index = index;
-        this.name = name;
     }
 
     public int getIndex() {

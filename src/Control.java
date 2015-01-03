@@ -6,9 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Stack;
 
-/**
- * Created by Jan on 31.12.2014.
- */
+
 public class Control {
     private final int MAX_SUPP_FILES = 100;
 
