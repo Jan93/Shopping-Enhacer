@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -14,10 +13,10 @@ public class Control {
     private final int MAX_SUPP_FILES = 100;
 
     private static String STORE_FILE_LOC = "";
-    private static String STORE_FILE_NAME = "Store_File_";
+    private static String STORE_FILE_NAME = "C:\\Users\\Jan\\Shopping-Enhancer\\out\\production\\Shopping-Enhancer\\Store_File_";
 
     private static String SHOP_LIST_FILE_LOC = "";
-    private static String SHOP_LIST_FILE_NAME = "Shop_List_File_";
+    private static String SHOP_LIST_FILE_NAME = "C:\\Users\\Jan\\Shopping-Enhancer\\out\\production\\Shopping-Enhancer\\Shop_List_File_";
 
     public Shopping_list shopping_list;
     public List<Store_item_list> store_item_list_List;
@@ -28,7 +27,6 @@ public class Control {
     }
 
     public Control(int store_num) {
-        boolean success;
 
         init_lists();
 
@@ -41,7 +39,7 @@ public class Control {
 
         store_item_list_List = new ArrayList<Store_item_list>();
 
-        file_stack = open_file_stack(SHOP_LIST_FILE_LOC + '\\' + SHOP_LIST_FILE_NAME);
+        file_stack = open_file_stack(SHOP_LIST_FILE_NAME);
         try {
             for (File stack_file : file_stack) {
                 shopping_list = new Shopping_list(stack_file);
@@ -51,7 +49,7 @@ public class Control {
             System.exit(1337);
         }
 
-        file_stack = open_file_stack(STORE_FILE_LOC + '\\' + STORE_FILE_NAME);
+        file_stack = open_file_stack(STORE_FILE_NAME);
         try {
             for (File stack_file : file_stack) {
                 store_item_list_List.add(new Store_item_list(stack_file));
@@ -99,7 +97,6 @@ public class Control {
         int fault_index = 0;
 
         file = new File(file_name);
-
         while (true) {
             if (file.isFile()) {
                 return file;

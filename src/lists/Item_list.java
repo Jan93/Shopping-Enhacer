@@ -37,9 +37,17 @@ import java.util.Stack;
 
         try {
             name = line.substring(0, line.indexOf(";"));
-            price = line.substring(line.indexOf(";"), line.length());
+            int diff = line.length() - (line.indexOf(";") + 1);
+            if (diff != 0) {
+                price = line.substring(line.indexOf(";") + 1, line.length());
+                shop_item = new Shop_item(name, Integer.parseInt(price));
+            } else {
+                shop_item = new Shop_item(name);
+            }
 
-            shop_item = new Shop_item(name, Integer.parseInt(price));
+
+
+
         } catch (NumberFormatException e) {
             throw new Broken_Line_Error(line, "Number Error");
         } catch (NullPointerException e) {

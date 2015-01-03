@@ -9,6 +9,9 @@ public class Shop_item {
         this.price = price;
         this.name = name;
     }
+    public Shop_item(String name) {
+        this.name = name;
+    }
 
 
     public void setIndex(int index) {
