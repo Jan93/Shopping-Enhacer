@@ -32,21 +32,15 @@ import java.util.Stack;
 
     protected Shop_item string_to_item(String line) throws Broken_Line_Error {
         String name;
-        String price;
+
         Shop_item shop_item;
 
         try {
             name = line.substring(0, line.indexOf(";"));
-            int diff = line.length() - (line.indexOf(";") + 1);
-            if (diff != 0) {
-                price = line.substring(line.indexOf(";") + 1, line.length());
-                shop_item = new Shop_item(name, Integer.parseInt(price));
-            } else {
-                shop_item = new Shop_item(name);
-            }
 
+            shop_item = new Shop_item(name);
 
-
+            //TODO Price from string
 
         } catch (NumberFormatException e) {
             throw new Broken_Line_Error(line, "Number Error");
